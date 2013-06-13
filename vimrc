@@ -18,7 +18,7 @@ set nocompatible
 autocmd!
 
 " automatic reloading of .vimrc after changes
-autocmd bufwritepost .vimrc source %
+autocmd bufwritepost _vimrc source %
 
 " This tells vim to keep a backup copy of a file when overwriting it. But not
 " on the VMS system, since it keeps old versions of files already. The backup
@@ -37,7 +37,7 @@ endif
 " "#!/bin/sh", Vim will recognize it as a "sh" filetype.
 " The filetype detection is sued for syntax highlighting and the other two
 " items below.
-" 
+"
 " 2. Using filetype plugin files
 " Many different filetypes are edited with different options. For example,
 " when you edit a "C" file, it's very useful for set teh 'cindent' option to
@@ -66,7 +66,7 @@ autocmd FileType text setlocal textwidth=78
 " ================================================
 " ================================================
 
-" specify which commands wrap to another line 
+" specify which commands wrap to another line
 set ww=b,s
 
 " change to directory of file in buffer
@@ -84,17 +84,16 @@ set ignorecase
 " override 'ignorecase' when pattern has uppercase characters
 set smartcase
 
-" clear search highlights
-noremap <silent><Leader>/ :nohls<CR>
-vnoremap <silent><Leader>/ :nohls<CR>
-inoremap <silent><Leader>/ :nohls<CR>
-
 " keep search pattern at the center of the screen
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
+
+" jump to start and end of line using the home row keys
+noremap H ^
+noremap L $
 
 " ================================================
 " ================================================
@@ -109,7 +108,9 @@ nnoremap <silent> g* g*zz
 " ================================================
 
 " number of screen lines to show around the cursor
-set so=4
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
 
 " ================================================
 " ================================================
@@ -124,7 +125,17 @@ set cursorline
 set hlsearch
 
 " columns to highlight
-set colorcolumn=80
+if exists('+colorcolumn')
+ set colorcolumn=80
+else
+	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+" toggle search highlights
+noremap <space> :set hlsearch! hlsearch?<CR>
+
+" highlight word at cursor without changing position
+nnoremap <Leader>h *<C-O>
 
 " ================================================
 " ================================================
@@ -185,7 +196,10 @@ set ruler
 " SELECTING TEXT
 " ===============================================
 " ===============================================
-"
+
+" select all text in the current buffer
+map <Leader>a ggVG
+
 " ===============================================
 " ===============================================
 " EDITING TEXT
@@ -203,6 +217,9 @@ if exists("+undofile")
     set udf
     set undodir=~/.vimundo
 endif
+
+" remove all the trailing whitespaces
+noremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " ===============================================
 " ===============================================
@@ -270,13 +287,13 @@ inoremap jk <Esc>
 " READING AND WRITING FILES
 " =============================================
 " =============================================
-" 
+"
 " =============================================
 " =============================================
 " THE SWAP FILE
 " =============================================
 " =============================================
-" 
+"
 " =============================================
 " =============================================
 " COMMAND LINE EDITING
@@ -297,7 +314,7 @@ set history=1000
 " RUNNING MAKE AND JUMPING TO ERRORS
 " =============================================
 " =============================================
-" 
+"
 " =============================================
 " =============================================
 " LANGUAGE SPECIFIC
@@ -323,4 +340,4 @@ set fenc=utf-8
 " ====================================
 
 " setup Pathogen to manage plugins
-execute pathogen#infect()
+" execute pathogen#infect()
