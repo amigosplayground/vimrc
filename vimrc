@@ -135,7 +135,7 @@ endif
 noremap <space> :set hlsearch! hlsearch?<CR>
 
 " highlight word at cursor without changing position
-nnoremap <Leader>h *<C-O>
+noremap <Leader>h *<C-O>
 
 " ================================================
 " ================================================
