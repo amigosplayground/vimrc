@@ -1,6 +1,6 @@
 "
 " Personal preference .vimrc file
-" Maintained by Christopher Galvan <chris.galvan@gmail.com>
+" Maintained by Christopher Galvan <cgalvan@gmail.com>
 "
 " =====================================================
 " =====================================================
@@ -58,7 +58,7 @@ syntax on
 " defines that when the file type is set to "text" the following command is
 " automatically executed. "setlocal textwidth=78" sets the 'textwidth' option
 " to 78, but only locally in one file.
-autocmd FileType text setlocal textwidth=78
+autocmd FileType text setlocal textwidth=183
 
 " remap leader to comma
 let mapleader=","
@@ -71,9 +71,6 @@ let mapleader=","
 
 " specify which commands wrap to another line
 set ww=b,s
-
-" change to directory of file in buffer
-set autochdir
 
 " search commands wrap around the end of the buffer
 set wrapscan
@@ -115,6 +112,7 @@ set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
 
+"
 " ================================================
 " ================================================
 " SYNTAX HIGHLIGHTING AND SPELLING
@@ -129,9 +127,9 @@ set hlsearch
 
 " columns to highlight
 if exists('+colorcolumn')
- set colorcolumn=80
+	set colorcolumn=185
 else
-	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>185v.\+', -1)
 endif
 
 " toggle search highlights
@@ -139,6 +137,9 @@ noremap <space> :set hlsearch! hlsearch?<CR>
 
 " highlight word at cursor without changing position
 noremap <Leader>h *<C-O>
+
+" colorscheme 
+colorscheme darkblue
 
 " ================================================
 " ================================================
@@ -287,7 +288,10 @@ inoremap jk <Esc>
 " READING AND WRITING FILES
 " =============================================
 " =============================================
-"
+
+" change to directory of file in buffer
+set autochdir
+
 " =============================================
 " =============================================
 " THE SWAP FILE
