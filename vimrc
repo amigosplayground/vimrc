@@ -60,6 +60,9 @@ syntax on
 " to 78, but only locally in one file.
 autocmd FileType text setlocal textwidth=78
 
+" remap leader to comma
+let mapleader=","
+
 " ================================================
 " ================================================
 " MOVING AROUND, SEARCHING AND PATTERNS
@@ -275,9 +278,6 @@ set foldenable
 " MAPPING
 " =============================================
 " =============================================
-
-" remap leader to comma
-let mapleader=","
 
 " use jk as <Esc> alternative
 inoremap jk <Esc>
