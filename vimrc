@@ -1,6 +1,6 @@
 "
 " Personal preference .vimrc file
-" Maintained by Christopher Galvan <cgalvan@gmail.com>
+" Maintained by Christopher Galvan <chris.galvan@gmail.com>
 "
 " =====================================================
 " =====================================================
