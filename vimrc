@@ -65,7 +65,7 @@ let mapleader=","
 
 " ================================================
 " ================================================
-" MOVING AROUND, SEARCHING AND PATTERNS
+" MOVING AROUND, SEARCHING, PATTERNS AND HELP
 " ================================================
 " ================================================
 
@@ -84,6 +84,9 @@ set ignorecase
 " override 'ignorecase' when pattern has uppercase characters
 set smartcase
 
+" make delete key in Normal mode remove the persistently highlighted matches
+nmap <silent> <BS> :nohlsearch<CR>
+
 " keep search pattern at the center of the screen
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -94,6 +97,30 @@ nnoremap <silent> g* g*zz
 " jump to start and end of line using the home row keys
 noremap H ^
 noremap L $
+
+" use arrow keys to navigate after :vimgrep or :helpgrep
+nmap <silent> <RIGHT>        :cnext<CR>
+nmap <silent> <RIGHT><RIGHT> :cnfile<CR><C-G>
+nmap <silent> <LEFT>         :cprev<CR>
+nmap <silent> <LEFT><LEFT>   :cpfile<CR><C-G>
+
+" make :help appear in a full-screen tab, instead of a window
+    "Only apply to .txt files...
+    augroup HelpInTabs
+        autocmd!
+        autocmd BufEnter *.txt call HelpInNewTab()
+    augroup END
+
+    "Only apply to help files...
+    function! HelpInNewTab()
+        if &buftype == 'help'
+            "Convert the help window to a tab..
+            execute "normal \<C-W>T"
+        endif
+    endfunction
+
+" make % match = and ; 
+set matchpairs+==:;
 
 " ================================================
 " ================================================
@@ -138,7 +165,7 @@ noremap <space> :set hlsearch! hlsearch?<CR>
 " highlight word at cursor without changing position
 noremap <Leader>h *<C-O>
 
-" colorscheme 
+" colorscheme
 colorscheme darkblue
 
 " ================================================
