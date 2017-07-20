@@ -29,6 +29,38 @@ else
  set backup
 endif
 
+" ================================================
+" ================================================
+" PLUGINS 
+" ================================================
+" ================================================
+
+" setup vim-plug plugin manager
+" specify a directory for plugins
+call plug#begin('~/.vim/plugged')
+"
+" NERDTree
+Plug 'scrooloose/nerdtree'
+" vim-airline
+Plug 'vim-airline/vim-airline'
+" vim-bufferline
+Plug 'bling/vim-bufferline'
+" undo tree
+Plug 'mbbill/undotree'
+" git gutter
+Plug 'airblade/vim-gitgutter'
+" surround
+Plug 'tpope/vim-surround'
+" tabular
+Plug 'godlygeek/tabular'
+" NERDCommenter
+Plug 'scrooloose/nerdcommenter'
+" ctrlp
+Plug 'kien/ctrlp.vim'
+"
+" initialize plugin system
+call plug#end()
+
 " This switches on three very clever mechanisms:
 " 1. Filetype detection.
 " Whenever you start editing a file, Vim will try to figure out what kind of
@@ -135,7 +167,7 @@ set matchpairs+==:;
 " ================================================
 
 " number of screen lines to show around the cursor
-set scrolloff=8
+set scrolloff=15
 set sidescrolloff=15
 set sidescroll=1
 
@@ -166,7 +198,7 @@ noremap <space> :set hlsearch! hlsearch?<CR>
 noremap <Leader>h *<C-O>
 
 " colorscheme
-colorscheme darkblue
+colorscheme apprentice
 
 " ================================================
 " ================================================
@@ -292,7 +324,14 @@ vnoremap > >gv " better indentation
 " =============================================
 " =============================================
 
-" set to display all folds open
+" open and close folds automatically
+ set foldopen=all
+ set foldclose=all
+
+" set fold method to indent
+set foldmethod=indent
+
+" set to display all folds
 set foldenable
 
 " =============================================
@@ -334,6 +373,9 @@ set autochdir
 " how many command lines are remembered
 set history=1000
 
+" command line completion
+set wildmode=list:longest,full
+
 " =============================================
 " =============================================
 " EXECTUTING EXTERNAL COMMANDS
@@ -370,5 +412,3 @@ set fenc=utf-8
 " ====================================
 " ====================================
 
-" setup Pathogen to manage plugins
-" execute pathogen#infect()
