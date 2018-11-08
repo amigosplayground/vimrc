@@ -43,10 +43,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 " vim-airline
 Plug 'vim-airline/vim-airline'
+" vim-airline themes
+Plug 'vim-airline/vim-airline-themes'
 " vim-bufferline
 Plug 'bling/vim-bufferline'
-" undo tree
-Plug 'mbbill/undotree'
+" Gundo
+Plug 'sjl/gundo.vim'
 " git gutter
 Plug 'airblade/vim-gitgutter'
 " surround
@@ -59,7 +61,16 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'kien/ctrlp.vim'
 " emmet
 Plug 'mattn/emmet-vim'
-"
+" indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+" gruvbox
+Plug 'morhetz/gruvbox'
+" vim-polyglot
+Plug 'sheerun/vim-polyglot'
+" vim-autoformat
+Plug 'chiel92/vim-autoformat'
+" vim-auto-save
+Plug '907th/vim-auto-save'
 " initialize plugin system
 call plug#end()
 
@@ -156,6 +167,10 @@ nmap <silent> <LEFT><LEFT>   :cpfile<CR><C-G>
 " make % match = and ; 
 set matchpairs+==:;
 
+" CtrlP mapping
+let g:ctrlp_map='<c-p>'
+let g:ctrlp_cmd='CtrlP'
+
 " ================================================
 " ================================================
 " TAGS
@@ -169,9 +184,12 @@ set matchpairs+==:;
 " ================================================
 
 " number of screen lines to show around the cursor
-set scrolloff=15
+set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
+
+" show line numbers
+set relativenumber
 
 "
 " ================================================
@@ -181,7 +199,7 @@ set sidescroll=1
 " ================================================
 
 " highlight the screen line of the cursor
-set cursorline
+"set cursorline
 
 " highlight all matches for the last used search pattern
 set hlsearch
@@ -199,8 +217,24 @@ noremap <space> :set hlsearch! hlsearch?<CR>
 " highlight word at cursor without changing position
 noremap <Leader>h *<C-O>
 
+" set terminal colors
+set termguicolors
+set background=dark
+
+" grubbox specific configuration
+let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
+let g:gruvbox_italicize_strings=1
+let g:gruvbox_improved_strings=1
+let g:gruvbox_improved_warnings=1
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='soft'
+"
 " colorscheme
-colorscheme apprentice
+colorscheme gruvbox
+
+" set guifont
+set guifont=Fira_Code:h9:cANSI:qDRAFT
 
 " ================================================
 " ================================================
@@ -255,6 +289,9 @@ set showmode
 
 " show cursor position below each window
 set ruler
+
+" denotes how to display the filename of a buffer
+"let g:bufferline_fname_mod=':p'
 
 " ===============================================
 " ===============================================
@@ -319,6 +356,12 @@ set copyindent
 " easier moving of code blocks
 vnoremap < <gv " better indentation
 vnoremap > >gv " better indentation
+
+" enable indent guides plugin on startup 
+let g:indent_guides_enable_on_vim_startup=1
+
+" set indent guides size
+let g:indent_guides_guide_size=1
 
 " =============================================
 " =============================================
@@ -413,4 +456,6 @@ set fenc=utf-8
 " VARIOUS
 " ====================================
 " ====================================
-
+"
+" enable auto-save plugin at startup
+let g:auto_save = 1
