@@ -65,12 +65,19 @@ Plug 'mattn/emmet-vim'
 Plug 'nathanaelkane/vim-indent-guides'
 " gruvbox
 Plug 'morhetz/gruvbox'
+" wombat256grf
+Plug 'gryf/wombat256grf'
 " vim-polyglot
 Plug 'sheerun/vim-polyglot'
 " vim-autoformat
 Plug 'chiel92/vim-autoformat'
 " vim-auto-save
 Plug '907th/vim-auto-save'
+" fugitive
+Plug 'tpope/vim-fugitive'
+" fzf
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " initialize plugin system
 call plug#end()
 
@@ -231,7 +238,7 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='soft'
 "
 " colorscheme
-colorscheme gruvbox
+colorscheme wombat256grf
 
 " set guifont
 set guifont=Fira_Code:h9:cANSI:qDRAFT
